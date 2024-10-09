@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shops List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #5e8cf0, #f0f4f8);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #b5f391;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .nav-button {
+            background-color: #4caf50; /* Green background */
+            color: white; /* White text */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-height: 800px; /* Set a max height for the list */
+            overflow-y: auto;  /* Enable vertical scrolling */
+            border: 1px solid #ccc; /* Optional: add a border for better visibility */
+            border-radius: 8px;
+        }
+        li {
+            background-color: #f8f9fa;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        li:hover {
+            background-color: #e2e6ea;
+            transform: scale(1.02);
+        }
+        .shop-details {
+            color: #555;
+            font-size: 14px;
+        }
+        .empty-message {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Shops</h1>
+        
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="{% url 'shops:shops_index' %}" class="nav-button">Home</a>
+            <a href="{% url 'shops:register_shop' %}" class="nav-button">Register Shop</a>
+            <a href="{% url 'shops:search_shops' %}" class="nav-button">Search Shops</a>
+            <a href="{% url 'shops:shop_list' %}" class="nav-button">Shop List</a>
+        </div>
+
+        <ul>
+            {% for shop in shops %}
+                <li>
+                    <strong>{{ shop.name }}</strong>
+                    <div class="shop-details">Coordinates: ({{ shop.latitude }}, {{ shop.longitude }})</div>
+                </li>
+            {% empty %}
+                <li class="empty-message">No shops available</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

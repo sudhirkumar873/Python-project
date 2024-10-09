@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registered Shops</title>
+    <style>
+        .notification {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #d4edda; /* Light green background */
+            color: #155724; /* Dark green text */
+            border: 1px solid #c3e6cb; /* Darker green border */
+        }
+
+        .message {
+            margin: 5px 0; /* Margin between messages */
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #5e8cf0, #f0f4f8);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #b5f391;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            background-color: #4caf50; /* Green background */
+            color: white; /* White text */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-height: 800px; /* Set a max height for the list */
+            overflow-y: auto; /* Enable vertical scrolling */
+            border: 1px solid #ccc; /* Optional: add a border for better visibility */
+            border-radius: 8px;
+        }
+
+        li {
+            background-color: #f8f9fa;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative; /* Position for absolute elements */
+        }
+
+        li:hover {
+            background-color: #e2e6ea;
+            transform: scale(1.02);
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+        }
+
+        .action-buttons {
+            position: absolute;
+            right: 15px; /* Adjust to fit your layout */
+            top: 15px; /* Adjust to fit your layout */
+        }
+
+        .action-buttons a,
+        .action-buttons form {
+            margin-left: 5px; /* Space between buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registered Shops</h1>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="{% url 'shops:shops_index' %}" class="nav-button">Home</a>
+            <a href="{% url 'shops:register_shop' %}" class="nav-button">Register a Shop</a>
+        </div>
+
+        <!-- Notification Section -->
+        {% if messages %}
+        <div class="notification">
+            {% for message in messages %}
+            <div class="message">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        
+    </div>
+</body>
+</html>
